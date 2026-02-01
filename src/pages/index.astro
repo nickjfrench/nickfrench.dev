@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import HeroFlow from '../components/flow/HeroFlow.vue';
+
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 import headshotImg from '../assets/headshot.jpg';
@@ -22,110 +24,11 @@ const company = "Netrevenue"
 	</head>
 	<body>
 		<Header />
-		<section class="relative w-full dot-background overflow-hidden">
-			<svg id="hero-path-container" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 w-full h-full pointer-events-none z-10">
-			</svg>
-
-			<div id="greeting" class="absolute left-[53%] top-[2%] text-text-muted p-4 text-lg font-handwritten flex flex-col items-end"><p>Hi!</p><p>I'm Nick French</p></div>
-
-			<div id="card-1" class="absolute left-10 top-10 bg-black-light p-4 rounded"><p>LLM Applications</p></div>
-			<div id="card-2" class="absolute left-10 top-100 bg-black-light p-4 rounded"><p>Game Development</p></div>
-			<div id="card-3" class="absolute left-100 top-10 bg-black-light p-4 rounded"><p>Full-stack Development</p></div>
-
-			<div id="hero-card" class="flex flex-row items-end max-w-2xl mx-auto pt-24 px-6 text-center ">
-				<div class="flex flex-col items-center pb-10">
-					<Image id="hero-img" src={headshotImg} alt={name} class="[mask-image:linear-gradient(circle,var(--color-black),transparent)] mx-auto w-50 rounded-2xl mb-8 border border-text-muted/50 border-1 p-1" />
-					<h1 class="text-3xl max-w-2xl leading-relaxed">
-						Full-stack developer building LLM systems that are actually useful.
-					</h1>
-				</div>
-			</div>
+		<section class="relative w-screen dot-background overflow-hidden">
+			<HeroFlow class="m-4" client:only="vue" />
 		</section>
 		<main>
 		</main>
 		<Footer />
-
-		<script>
-			// Modified from: https://stackoverflow.com/a/36995443
-			document.addEventListener("DOMContentLoaded", () => {
-				type PathConfig = {
-					destId: string;
-					attrs?: Record<string, string>;
-				};
-
-				const connectorConfigs: PathConfig[] = [
-					{ destId: "greeting", attrs: { stroke: "var(--color-text-muted)", "stroke-width": "1" } },
-					{ destId: "card-1", attrs: { stroke: "var(--color-accent)", "stroke-width": "2" } },
-					{ destId: "card-2", attrs: { stroke: "var(--color-accent)", "stroke-width": "2" } },
-					{ destId: "card-3", attrs: { stroke: "var(--color-accent)", "stroke-width": "2" } },
-				];
-
-				const pathContainer = document.querySelector("#hero-path-container");
-				const paths = new Map<string, SVGPathElement>();
-
-				const createPath = (config: PathConfig): SVGPathElement => {
-					const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-					path.setAttribute("fill", "none");
-					if (config.attrs) {
-						Object.entries(config.attrs).forEach(([key, value]) => {
-							path.setAttribute(key, value);
-						});
-					}
-					path.id = `connector-${config.destId}`;
-					return path;
-				};
-
-				// Initialize paths
-				connectorConfigs.forEach((config) => {
-					const path = createPath(config);
-					pathContainer?.appendChild(path);
-					paths.set(config.destId, path);
-				});
-
-				type Position = {
-					x: number,
-					y: number
-				}
-
-				const drawAllConnectors = () => {
-					const source = document.querySelector("#hero-img") as HTMLElement | null;
-					if (!source) return;
-
-					connectorConfigs.forEach((config) => {
-						const dest = document.querySelector(`#${config.destId}`) as HTMLElement | null;
-						const path = paths.get(config.destId);
-						if (!dest || !path) return;
-
-						drawConnector(source, dest, path);
-					})
-				}
-
-				const drawConnector = (source: HTMLElement, dest: HTMLElement, path: SVGPathElement) => {
-					const start = {
-						x: source.offsetLeft,
-						y: source.offsetTop + source.offsetHeight / 2
-					};
-					const end = {
-						x: dest.offsetLeft + dest.offsetWidth,
-						y: dest.offsetTop + dest.offsetHeight / 2
-					};
-
-					// Draw Cubic Bezier Curve
-					const dStr = drawCubicBezierLine(start, end, 100)
-
-					path.setAttribute("d", dStr);
-				};
-
-				const drawCubicBezierLine = (start: Position, end: Position, handleOffset: number = 100) => {
-					const direction = start.x < end.x ? 1 : -1;
-					const startHandle = start.x + (handleOffset * direction);
-					const endHandle = end.x - (handleOffset * direction);
-					return `M ${start.x},${start.y} C ${startHandle},${start.y} ${endHandle},${end.y} ${end.x},${end.y}`
-				}
-
-				window.addEventListener("resize", drawAllConnectors);
-				drawAllConnectors();
-			});
-		</script>
 	</body>
 </html>
