@@ -2,14 +2,19 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
+	/* Font families */
+	--font-sans: "DM Sans", sans-serif;
+	--font-serif: "Newsreader", serif;
+	--font-handwritten: "Caveat", cursive;
+
 	/* Color palette */
 	--color-accent: oklch(0.5 0.25 264);
 	--color-accent-light: oklch(0.65 0.2 264);
 	--color-accent-dark: oklch(0.35 0.2 264);
-	--color-black: oklch(0.15 0.02 264);
-	--color-black-light: oklch(0.2 0.02 264);
-	--color-text: oklch(0.9 0.01 264);
-	--color-text-muted: oklch(0.65 0.02 264);
+	--color-black: oklch(0.08 0.03 257);
+	--color-black-light: oklch(from var(--color-black) calc(l + 0.10) c h);
+	--color-text: var(--color-zinc-300);
+	--color-text-muted: oklch(from var(--color-text) calc(l - 0.25) c h);
 	--color-border: oklch(0.3 0.02 264);
 
 	/* Utility defaults */
@@ -18,26 +23,34 @@
 	--default-outline-color: var(--color-accent);
 }
 
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+@layer base {
+	h1 {
+		font-family: var(--font-serif);
+	}
+
+	body {
+		font-family: var(--font-sans);
+		font-optical-sizing: auto;
+		background-color: var(--color-black);
+		color: var(--color-text);
+	}
 }
 
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-
-body {
-	font-family: "Atkinson", sans-serif;
+.dot-background {
+	/* 1. Set the background color (the space between dots) */
 	background-color: var(--color-black);
-	color: var(--color-text);
+
+	/* 2. Define a radial gradient for a single dot */
+	/* #000 10% makes the dot solid black up to 10% of the radius */
+	/* transparent 11% makes the rest of the gradient transparent */
+	background-image: radial-gradient(oklch(from var(--color-text-muted) l c h / 0.15) 10%, transparent 11%);
+
+	/* 3. Define the size of the repeating pattern cell */
+	/* The size here determines the spacing between the dots */
+	background-size: 30px 30px;
+
+	/* 4. Ensure the pattern repeats */
+	background-repeat: repeat;
 }
 
 .sr-only {
