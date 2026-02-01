@@ -60,7 +60,40 @@ onNodeDrag(({ node }) => {
 
 const containerRef = ref<HTMLElement | null>(null)
 
+const placeNodesAroundHero = () => {
+	const hero = findNode('hero')
+	if (!hero) return
+
+	const heroCenter = getNodeCenter(hero)
+	const gap = 130 // horizontal gap from hero
+
+	// Left side cards (stacked vertically)
+	const leftCards = ['llm', 'fullstack']
+	leftCards.forEach((id, i) => {
+		const node = findNode(id)
+		if (!node) return
+		const nodeWidth = node.dimensions?.width ?? 150
+		const nodeHeight = node.dimensions?.height ?? 100
+
+		node.position = {
+			x: heroCenter.x - (hero.dimensions?.width ?? 0) / 2 - nodeWidth - gap,
+			y: hero.position.y + i * (nodeHeight + 30)
+		}
+	})
+
+	// Right side card
+	const gamedev = findNode('gamedev')
+	if (gamedev) {
+		const nodeHeight = gamedev.dimensions?.height ?? 100
+		gamedev.position = {
+			x: heroCenter.x + (hero.dimensions?.width ?? 0) / 2 + gap,
+			y: heroCenter.y - nodeHeight / 2
+		}
+	}
+}
+
 onNodesInitialized(() => {
+	placeNodesAroundHero()
 	updateEdgeHandles()
 	fitView({ nodes: ['hero'], minZoom: 1, maxZoom: 1 })
 })
@@ -98,7 +131,8 @@ const edges = ref([
 <template>
 	<div ref="containerRef" class="h-[500px] w-full">
 		<VueFlow :nodes="nodes" :edges="edges" :pan-on-scroll="false" :pan-on-drag="false" :prevent-scrolling="true"
-			:zoom-on-scroll="false" :auto-pan-on-node-drag="false" :min-zoom="1" :max-zoom="1" :default-viewport="{ x: 0, y: 0, zoom: 1 }">
+			:zoom-on-scroll="false" :auto-pan-on-node-drag="false" :min-zoom="1" :max-zoom="1"
+			:default-viewport="{ x: 0, y: 0, zoom: 1 }">
 			<template #node-hero="props">
 				<HeroNode v-bind="props" />
 			</template>
