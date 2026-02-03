@@ -11,8 +11,8 @@ const { title, subtitle } = Astro.props;
 	<div class="max-w-4xl mx-auto px-4 text-center">
 		<slot name="pre-title" />
 		<h1 class="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
-		{subtitle && <p class="text-lg text-[var(--text-muted)]">{subtitle}</p>}
+		{subtitle && <p class="text-lg text-text-muted">{subtitle}</p>}
 		<slot />
 	</div>
-	<div class="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none" style="background: linear-gradient(to bottom, transparent, var(--bg-base));"></div>
+	<div class="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none" style="background: linear-gradient(to bottom, transparent, var(--color-bg-base));"></div>
 </section>

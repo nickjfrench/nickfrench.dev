@@ -16,7 +16,7 @@ const { name, tagline, imgSrc } = Astro.props;
 		<div class="speech-bubble self-start mb-4 ml-12 bg-black-light rounded-lg px-4 py-2">
 			<p class="font-handwritten text-xl">Hi! I'm {name}</p>
 		</div>
-		<Image src={imgSrc} alt={name} class="w-50 rounded-2xl mb-8 border border-[var(--text-primary)]/30 p-1" />
+		<Image src={imgSrc} alt={name} class="w-50 rounded-2xl mb-8 border border-text-primary/30 p-1" />
 		<h1 class="text-3xl leading-relaxed font-medium tracking-wide gradient-text">
 			{tagline}
 		</h1>
@@ -36,7 +36,7 @@ const { name, tagline, imgSrc } = Astro.props;
 	height: 0;
 	border-left: 8px solid transparent;
 	border-right: 8px solid transparent;
-	border-top: 15px solid var(--bg-elevated);
+	border-top: 15px solid var(--color-bg-elevated);
 	bottom: -15px;
 }
 </style>

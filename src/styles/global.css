@@ -9,26 +9,26 @@
 	--font-handwritten: "Caveat", cursive;
 
 	/* Backgrounds */
-	--bg-base: oklch(0.08 0.03 257);
-	--bg-elevated: oklch(from var(--bg-base) calc(l + 0.10) c h);
+	--color-bg-base: oklch(0.08 0.03 257);
+	--color-bg-elevated: oklch(from var(--color-bg-base) calc(l + 0.10) c h);
 
 	/* Text */
-	--text-primary: var(--color-zinc-300);
-	--text-muted: oklch(from var(--text-primary) calc(l - 0.20) c h);
+	--color-text-primary: var(--color-zinc-300);
+	--color-text-muted: oklch(from var(--color-text-primary) calc(l - 0.20) c h);
 
 	/* Accent */
-	--accent-base: oklch(0.3345 0.1474 289.62);
-	--accent-light: oklch(from var(--accent-base) calc(l + 0.10) c h);
-	--accent-dark: oklch(from var(--accent-base) calc(l - 0.30) c h);
+	--color-accent-base: oklch(0.3345 0.1474 289.62);
+	--color-accent-light: oklch(from var(--color-accent-base) calc(l + 0.10) c h);
+	--color-accent-dark: oklch(from var(--color-accent-base) calc(l - 0.30) c h);
 
 	/* Border */
-	--border-base: oklch(0.3 0.02 264);
+	--color-border-base: oklch(0.3 0.02 264);
 
 	/* Utility defaults */
-	--default-background-color: var(--bg-base);
-	--default-border-color: var(--border-base);
-	--default-ring-color: var(--accent-base);
-	--default-outline-color: var(--accent-base);
+	--default-background-color: var(--color-bg-base);
+	--default-border-color: var(--color-border-base);
+	--default-ring-color: var(--color-accent-base);
+	--default-outline-color: var(--color-accent-base);
 }
 
 @layer base {
@@ -52,21 +52,21 @@
 	body {
 		font-family: var(--font-sans);
 		font-optical-sizing: auto;
-		background-color: var(--bg-base);
-		color: var(--text-primary);
+		background-color: var(--color-bg-base);
+		color: var(--color-text-primary);
 	}
 
 	hr {
 		border: none;
 		height: 1px;
-		background: linear-gradient(90deg, transparent, var(--accent-base), transparent);
+		background: linear-gradient(90deg, transparent, var(--color-accent-base), transparent);
 	}
 }
 
 .dot-background {
 	background-image:
-		radial-gradient(oklch(from var(--text-muted) l c h / 0.15) 10%, transparent 11%),
-		linear-gradient(135deg, oklch(from var(--bg-base) l c h) 0%, oklch(from var(--accent-dark) l c h) 100%);
+		radial-gradient(oklch(from var(--color-text-muted) l c h / 0.15) 10%, transparent 11%),
+		linear-gradient(135deg, oklch(from var(--color-bg-base) l c h) 0%, oklch(from var(--color-accent-dark) l c h) 100%);
 	background-size: 30px 30px, 100% 100%;
 	background-repeat: repeat, no-repeat;
 }
@@ -74,7 +74,7 @@
 .header-active::before {
 	content: "~/";
 	margin-right: 0.05rem;
-	color: var(--text-primary);
+	color: var(--color-text-primary);
 }
 
 .sr-only {

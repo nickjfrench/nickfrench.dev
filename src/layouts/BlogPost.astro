@@ -21,7 +21,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<body>
 		<Header />
 		<PageHero title={title} subtitle={description}>
-			<p slot="pre-title" class="text-sm text-[var(--text-muted)] mb-4">
+			<p slot="pre-title" class="text-sm text-text-muted mb-4">
 				<FormattedDate date={pubDate} />
 				{
 					updatedDate && (

@@ -1,12 +1,12 @@
 ---
-title: 'Example Project'
-description: 'A brief description of what this project does and the problem it solves.'
+title: 'This Website'
+description: 'Website for nickfrench.dev, including a blog and portfolio.'
 heroImage: '../../assets/blog-placeholder-1.jpg'
-technologies: ['Vue', 'TypeScript', 'Tailwind CSS', 'Python']
-liveUrl: 'https://example.com'
-repoUrl: 'https://github.com/username/project'
-role: 'Lead Developer'
-date: 'Jan 2024'
+technologies: ['Astro', 'TypeScript', 'Tailwind CSS',]
+liveUrl: 'https://nickfrench.dev'
+repoUrl: 'https://github.com/nickjfrench/nickfrench.dev'
+role: 'Solo Developer'
+date: 'Feb 2026'
 featured: true
 ---
 

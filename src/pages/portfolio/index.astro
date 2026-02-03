@@ -34,7 +34,7 @@ const projects = (await getCollection('portfolio')).sort(
 					projects.map((project) => (
 						<a
 							href={`/portfolio/${project.id}/`}
-							class="group block rounded-xl overflow-hidden border border-[var(--border-base)] bg-[var(--bg-elevated)] hover:border-[var(--accent-base)] transition-all duration-300"
+							class="group block rounded-xl overflow-hidden border border-border-base bg-bg-elevated hover:border-accent-base transition-all duration-300"
 						>
 							{project.data.heroImage && (
 								<div class="aspect-video overflow-hidden">
@@ -50,31 +50,31 @@ const projects = (await getCollection('portfolio')).sort(
 							<div class="p-6">
 								<div class="flex items-center gap-2 mb-2">
 									{project.data.featured && (
-										<span class="px-2 py-0.5 text-xs rounded-full bg-[var(--accent-base)] text-white">
+										<span class="px-2 py-0.5 text-xs rounded-full bg-accent-base text-white">
 											Featured
 										</span>
 									)}
 									{project.data.date && (
-										<span class="text-sm text-[var(--text-muted)]">
+										<span class="text-sm text-text-muted">
 											{project.data.date.getFullYear()}
 										</span>
 									)}
 								</div>
-								<h2 class="text-xl font-semibold mb-2 group-hover:text-[var(--accent-light)] transition-colors">
+								<h2 class="text-xl font-semibold mb-2 group-hover:text-accent-light transition-colors">
 									{project.data.title}
 								</h2>
-								<p class="text-[var(--text-muted)] text-sm mb-4 line-clamp-2">
+								<p class="text-text-muted text-sm mb-4 line-clamp-2">
 									{project.data.description}
 								</p>
 								{project.data.technologies && project.data.technologies.length > 0 && (
 									<div class="flex flex-wrap gap-2">
 										{project.data.technologies.slice(0, 4).map((tech) => (
-											<span class="px-2 py-0.5 text-xs rounded bg-[var(--bg-base)] text-[var(--text-muted)]">
+											<span class="px-2 py-0.5 text-xs rounded bg-bg-base text-text-muted">
 												{tech}
 											</span>
 										))}
 										{project.data.technologies.length > 4 && (
-											<span class="px-2 py-0.5 text-xs rounded bg-[var(--bg-base)] text-[var(--text-muted)]">
+											<span class="px-2 py-0.5 text-xs rounded bg-bg-base text-text-muted">
 												+{project.data.technologies.length - 4}
 											</span>
 										)}

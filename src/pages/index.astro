@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import HeroFlow from '../components/flow/HeroFlow.vue';
 import HeroCard from '../components/HeroCard.astro';
 
 import { SITE_DESCRIPTION, SITE_TITLE, NAME } from '../consts';
@@ -25,9 +24,9 @@ const company = "Netrevenue"
 	</head>
 	<body>
 		<Header />
-		<section class="relative w-full pt-16 pb-24 dot-background">
+		<section class="relative w-full pt-8 pb-16 dot-background">
 			<HeroCard name={NAME} tagline="A full-stack developer building LLM systems that are actually useful." imgSrc={headshotImg} />
-			<div class="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none" style="background: linear-gradient(to bottom, transparent, var(--bg-base));"></div>
+			<div class="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none" style="background: linear-gradient(to bottom, transparent, var(--color-bg-base));"></div>
 		</section>
 		<main>
 			<div class="pb-24" >
