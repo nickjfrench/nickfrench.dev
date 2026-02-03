@@ -1,13 +1,14 @@
 ---
 import { Image } from 'astro:assets';
 import { library, icon } from '@fortawesome/fontawesome-svg-core';
-import { faGithub, faDev } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faDev, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 import substackLogo from '../assets/substack.png';
 
-library.add(faGithub, faDev);
+library.add(faGithub, faDev, faLinkedin);
 const githubIcon = icon({ prefix: 'fab', iconName: 'github' });
 const devIcon = icon({ prefix: 'fab', iconName: 'dev' });
+const linkedinIcon = icon({ prefix: 'fab', iconName: 'linkedin' });
 ---
 
 
@@ -22,4 +23,8 @@ const devIcon = icon({ prefix: 'fab', iconName: 'dev' });
 <a href="https://github.com/nickjfrench" target="_blank" class="py-4 px-3 text-text-muted hover:text-text flex items-center justify-center">
 	<span class="sr-only">Check out my Github</span>
 	<span aria-hidden="true" class="w-5 h-5 inline-block" set:html={githubIcon.html[0]} />
+</a>
+<a href="https://www.linkedin.com/in/nicholas-j-french" target="_blank" class="py-4 px-3 text-text-muted hover:text-text flex items-center justify-center">
+	<span class="sr-only">Connect on Linkedin</span>
+	<span aria-hidden="true" class="w-5 h-5 inline-block" set:html={linkedinIcon.html[0]} />
 </a>
