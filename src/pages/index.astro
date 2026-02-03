@@ -4,8 +4,9 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import HeroFlow from '../components/flow/HeroFlow.vue';
+import HeroCard from '../components/HeroCard.astro';
 
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, NAME } from '../consts';
 
 import headshotImg from '../assets/headshot.jpg';
 import fullBodyImg from '../assets/full-body-portrait.webp';
@@ -24,10 +25,19 @@ const company = "Netrevenue"
 	</head>
 	<body>
 		<Header />
-		<section class="relative w-screen dot-background overflow-hidden">
-			<HeroFlow class="m-4" client:only="vue" />
+		<section class="relative w-full pt-16 pb-24 dot-background">
+			<HeroCard name={NAME} tagline="A full-stack developer building LLM systems that are actually useful." imgSrc={headshotImg} />
+			<div class="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none" style="background: linear-gradient(to bottom, transparent, var(--bg-base));"></div>
 		</section>
 		<main>
+			<div class="pb-24" >
+				<h1>Blog Posts</h1>
+				<p>Find a list of my latest posts.</p>
+			</div>
+			<hr />
+			<div class="py-24" >
+
+			</div>
 		</main>
 		<Footer />
 	</body>

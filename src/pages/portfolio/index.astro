@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const projects = (await getCollection('portfolio')).sort(
+	(a, b) => {
+		// Featured projects first, then by date
+		if (a.data.featured !== b.data.featured) {
+			return a.data.featured ? -1 : 1;
+		}
+		const dateA = a.data.date?.valueOf() ?? 0;
+		const dateB = b.data.date?.valueOf() ?? 0;
+		return dateB - dateA;
+	}
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Portfolio | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<PageHero title="Portfolio" subtitle="A collection of projects I've worked on." />
+		<main>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-24">
+				{
+					projects.map((project) => (
+						<a
+							href={`/portfolio/${project.id}/`}
+							class="group block rounded-xl overflow-hidden border border-[var(--border-base)] bg-[var(--bg-elevated)] hover:border-[var(--accent-base)] transition-all duration-300"
+						>
+							{project.data.heroImage && (
+								<div class="aspect-video overflow-hidden">
+									<Image
+										width={720}
+										height={360}
+										src={project.data.heroImage}
+										alt={`Screenshot of ${project.data.title}`}
+										class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+									/>
+								</div>
+							)}
+							<div class="p-6">
+								<div class="flex items-center gap-2 mb-2">
+									{project.data.featured && (
+										<span class="px-2 py-0.5 text-xs rounded-full bg-[var(--accent-base)] text-white">
+											Featured
+										</span>
+									)}
+									{project.data.date && (
+										<span class="text-sm text-[var(--text-muted)]">
+											{project.data.date.getFullYear()}
+										</span>
+									)}
+								</div>
+								<h2 class="text-xl font-semibold mb-2 group-hover:text-[var(--accent-light)] transition-colors">
+									{project.data.title}
+								</h2>
+								<p class="text-[var(--text-muted)] text-sm mb-4 line-clamp-2">
+									{project.data.description}
+								</p>
+								{project.data.technologies && project.data.technologies.length > 0 && (
+									<div class="flex flex-wrap gap-2">
+										{project.data.technologies.slice(0, 4).map((tech) => (
+											<span class="px-2 py-0.5 text-xs rounded bg-[var(--bg-base)] text-[var(--text-muted)]">
+												{tech}
+											</span>
+										))}
+										{project.data.technologies.length > 4 && (
+											<span class="px-2 py-0.5 text-xs rounded bg-[var(--bg-base)] text-[var(--text-muted)]">
+												+{project.data.technologies.length - 4}
+											</span>
+										)}
+									</div>
+								)}
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

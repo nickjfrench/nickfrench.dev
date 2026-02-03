@@ -1,0 +1,41 @@
+---
+title: 'Example Project'
+description: 'A brief description of what this project does and the problem it solves.'
+heroImage: '../../assets/blog-placeholder-1.jpg'
+technologies: ['Vue', 'TypeScript', 'Tailwind CSS', 'Python']
+liveUrl: 'https://example.com'
+repoUrl: 'https://github.com/username/project'
+role: 'Lead Developer'
+date: 'Jan 2024'
+featured: true
+---
+
+## Overview
+
+Describe the project at a high level. What is it? Who is it for? What problem does it solve?
+
+## The Challenge
+
+What was the initial problem or opportunity? What constraints did you face?
+
+## My Approach
+
+How did you approach solving this problem? What key decisions did you make and why?
+
+## Key Features
+
+- **Feature One**: Description of what it does
+- **Feature Two**: Description of what it does
+- **Feature Three**: Description of what it does
+
+## Technical Details
+
+Dive deeper into the technical implementation. What architecture patterns did you use? Any interesting algorithms or techniques?
+
+## Results
+
+What was the outcome? Include metrics if possible (performance improvements, user adoption, etc.)
+
+## Lessons Learned
+
+What did you learn from this project? What would you do differently?

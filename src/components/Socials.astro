@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import { library, icon } from '@fortawesome/fontawesome-svg-core';
+import { faGithub, faDev } from '@fortawesome/free-brands-svg-icons';
+
+import substackLogo from '../assets/substack.png';
+
+library.add(faGithub, faDev);
+const githubIcon = icon({ prefix: 'fab', iconName: 'github' });
+const devIcon = icon({ prefix: 'fab', iconName: 'dev' });
+---
+
+
+<a href="https://nickjfrench.substack.com/" target="_blank" class="py-4 px-2 text-text-muted hover:text-text flex items-center justify-center">
+	<span class="sr-only">Follow Me on Substack</span>
+	<Image alt="Substack Logo" aria-hidden="true" class="w-8 h-8 mt-[1px]" src={substackLogo} />
+</a>
+<a href="https://dev.to/nickfrench" target="_blank" class="py-4 px-3 text-text-muted hover:text-text flex items-center justify-center">
+	<span class="sr-only">Follow Me on DEV</span>
+	<span aria-hidden="true" class="w-5 h-5 inline-block" set:html={devIcon.html[0]} />
+</a>
+<a href="https://github.com/nickjfrench" target="_blank" class="py-4 px-3 text-text-muted hover:text-text flex items-center justify-center">
+	<span class="sr-only">Check out my Github</span>
+	<span aria-hidden="true" class="w-5 h-5 inline-block" set:html={githubIcon.html[0]} />
+</a>

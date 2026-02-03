@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	name: string;
+	tagline: string;
+	imgSrc: ImageMetadata;
+}
+
+const { name, tagline, imgSrc } = Astro.props;
+---
+
+<div class="h-full w-full flex items-center">
+	<div class="mx-auto flex flex-col items-center text-center max-w-xl py-24">
+		<div class="speech-bubble self-start mb-4 ml-12 bg-black-light rounded-lg px-4 py-2">
+			<p class="font-handwritten text-xl">Hi! I'm {name}</p>
+		</div>
+		<Image src={imgSrc} alt={name} class="w-50 rounded-2xl mb-8 border border-[var(--text-primary)]/30 p-1" />
+		<h1 class="text-3xl leading-relaxed font-medium tracking-wide gradient-text">
+			{tagline}
+		</h1>
+	</div>
+</div>
+
+<style>
+.speech-bubble {
+	position: relative;
+}
+
+.speech-bubble::after {
+	content: '';
+	position: absolute;
+	left: 75%;
+	width: 0;
+	height: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 15px solid var(--bg-elevated);
+	bottom: -15px;
+}
+</style>

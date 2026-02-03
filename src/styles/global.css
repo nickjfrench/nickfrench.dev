@@ -4,54 +4,77 @@
 
 @theme {
 	/* Font families */
-	--font-sans: "DM Sans", sans-serif;
+	--font-sans: "Raleway", sans-serif;
 	--font-serif: "Newsreader", serif;
 	--font-handwritten: "Caveat", cursive;
 
-	/* Color palette */
-	--color-accent: oklch(0.5 0.25 264);
-	--color-accent-light: oklch(0.65 0.2 264);
-	--color-accent-dark: oklch(0.35 0.2 264);
-	--color-black: oklch(0.08 0.03 257);
-	--color-black-light: oklch(from var(--color-black) calc(l + 0.10) c h);
-	--color-text: var(--color-zinc-300);
-	--color-text-muted: oklch(from var(--color-text) calc(l - 0.20) c h);
-	--color-border: oklch(0.3 0.02 264);
+	/* Backgrounds */
+	--bg-base: oklch(0.08 0.03 257);
+	--bg-elevated: oklch(from var(--bg-base) calc(l + 0.10) c h);
+
+	/* Text */
+	--text-primary: var(--color-zinc-300);
+	--text-muted: oklch(from var(--text-primary) calc(l - 0.20) c h);
+
+	/* Accent */
+	--accent-base: oklch(0.3345 0.1474 289.62);
+	--accent-light: oklch(from var(--accent-base) calc(l + 0.10) c h);
+	--accent-dark: oklch(from var(--accent-base) calc(l - 0.30) c h);
+
+	/* Border */
+	--border-base: oklch(0.3 0.02 264);
 
 	/* Utility defaults */
-	--default-border-color: var(--color-border);
-	--default-ring-color: var(--color-accent);
-	--default-outline-color: var(--color-accent);
+	--default-background-color: var(--bg-base);
+	--default-border-color: var(--border-base);
+	--default-ring-color: var(--accent-base);
+	--default-outline-color: var(--accent-base);
 }
 
 @layer base {
 	h1 {
-		font-family: var(--font-serif);
+		font-size: var(--text-3xl);
+	}
+
+	h2 {
+		font-size: var(--text-2xl);
+	}
+
+	h2 {
+		font-size: var(--text-xl);
+	}
+
+	main {
+		margin: auto;
+		width: var(--container-4xl);
 	}
 
 	body {
 		font-family: var(--font-sans);
 		font-optical-sizing: auto;
-		background-color: var(--color-black);
-		color: var(--color-text);
+		background-color: var(--bg-base);
+		color: var(--text-primary);
+	}
+
+	hr {
+		border: none;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--accent-base), transparent);
 	}
 }
 
 .dot-background {
-	/* 1. Set the background color (the space between dots) */
-	background-color: var(--color-black);
+	background-image:
+		radial-gradient(oklch(from var(--text-muted) l c h / 0.15) 10%, transparent 11%),
+		linear-gradient(135deg, oklch(from var(--bg-base) l c h) 0%, oklch(from var(--accent-dark) l c h) 100%);
+	background-size: 30px 30px, 100% 100%;
+	background-repeat: repeat, no-repeat;
+}
 
-	/* 2. Define a radial gradient for a single dot */
-	/* #000 10% makes the dot solid black up to 10% of the radius */
-	/* transparent 11% makes the rest of the gradient transparent */
-	background-image: radial-gradient(oklch(from var(--color-text-muted) l c h / 0.15) 10%, transparent 11%);
-
-	/* 3. Define the size of the repeating pattern cell */
-	/* The size here determines the spacing between the dots */
-	background-size: 30px 30px;
-
-	/* 4. Ensure the pattern repeats */
-	background-repeat: repeat;
+.header-active::before {
+	content: "~/";
+	margin-right: 0.05rem;
+	color: var(--text-primary);
 }
 
 .sr-only {
