@@ -39,3 +39,9 @@ What was the outcome? Include metrics if possible (performance improvements, use
 ## Lessons Learned
 
 What did you learn from this project? What would you do differently?
+
+## Inspiration
+
+- [Abhishek's Website](https://www.wallofportfolios.in/portfolios/abhishek-waghela/)
+- [Linear.app](https://linear.app/)
+- [Framer.com](https://www.framer.com/)
