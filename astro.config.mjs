@@ -14,6 +14,11 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), vue()],
 
   vite: {
+    server: {
+      watch: {
+        ignored: ['**/.obsidian/**', '**/_bases/**', '**/bases/**', '**/_home/**', '**/home/**', '**/_base/**', '**/base/**']
+      }
+    },
     plugins: [tailwindcss()],
   },
 });
