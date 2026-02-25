@@ -33,7 +33,7 @@
       "name": "Portfolio",
       "folder": "portfolio",
       "linkBasePath": "/portfolio/",
-      "template": "---\ntitle: \"{{title}}\"\ndescription: \"\"\nheroImage: \"\"\ntechnologies: []\ntags: []\nliveUrl: \"\"\nrepoUrl: \"\"\nrole: \"\"\ncompletedDate: \"\"\nupdatedDate: {{date}}\ndraft: true\nfeatured: true\n---\n",
+      "template": "---\ntitle: \"{{title}}\"\ndescription: \"\"\nheroImage: \"\"\ntechnologies: []\ntags: []\nliveUrl: \"\"\nrepoUrl: \"\"\nrole: \"\"\ncompletedDate: \"\"\nupdatedDate: {{date}}\ndraft: true\nfeatured: false\n---\n",
       "enabled": true,
       "creationMode": "folder",
       "indexFileName": "index",

@@ -54,9 +54,9 @@ const projects = (await getCollection('portfolio')).sort(
 											Featured
 										</span>
 									)}
-									{project.data.date && (
+									{project.data.completedDate && (
 										<span class="text-sm text-text-muted">
-											{project.data.date.getFullYear()}
+											{project.data.completedDate.getFullYear()}
 										</span>
 									)}
 								</div>

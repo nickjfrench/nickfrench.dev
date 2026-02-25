@@ -7,6 +7,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import PageHero from '../../components/PageHero.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { codeToTitleCase } from "../../utils";
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -50,6 +51,20 @@ const posts = (await getCollection('blog')).sort(
 								<p class="text-text-muted text-sm line-clamp-2">
 									{post.data.description}
 								</p>
+								{post.data.tags && post.data.tags.length > 0 && (
+									<div class="flex flex-wrap gap-2">
+										{post.data.tags.slice(0, 4).map((tag) => (
+											<span class="px-2 py-0.5 text-xs rounded bg-bg-base text-text-muted">
+												{codeToTitleCase(tag)}
+											</span>
+										))}
+										{post.data.tags.length > 4 && (
+											<span class="px-2 py-0.5 text-xs rounded bg-bg-base text-text-muted">
+												+{post.data.tags.length - 4}
+											</span>
+										)}
+									</div>
+								)}
 							</div>
 						</a>
 					))

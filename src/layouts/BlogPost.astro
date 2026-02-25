@@ -6,31 +6,38 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import PageHero from '../components/PageHero.astro';
+import { SITE_TITLE } from '../consts';
+import { codeToTitleCase } from '../utils';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, tags, updatedDate, heroImage } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={`${title} | ${SITE_TITLE}`} description={description} />
 	</head>
 
 	<body>
 		<Header />
-		<PageHero title={title} subtitle={description}>
+		<PageHero title={title}>
 			<p slot="pre-title" class="text-sm text-text-muted mb-4">
-				<FormattedDate date={pubDate} />
-				{
-					updatedDate && (
-						<span class="italic ml-2">
-							· Updated <FormattedDate date={updatedDate} />
-						</span>
-					)
-				}
+				{pubDate && <span class="mr-2"><FormattedDate date={pubDate} /></span>}
+				{pubDate && updatedDate && <span class="mr-2">·</span>}
+				{updatedDate && <span class="italic">Updated <FormattedDate date={updatedDate} /></span>}
 			</p>
+			{description && (<p class="text-lg text-text-muted mb-6">{description}</p>)}
+			{tags && tags.length > 0 && (
+				<div class="flex flex-wrap justify-center gap-2 mb-6">
+					{tags.map((tag) => (
+						<span class="px-3 py-1 text-sm rounded-full bg-accent-dark text-text-primary border border-border-base">
+							{codeToTitleCase(tag)}
+						</span>
+					))}
+				</div>
+			)}
 		</PageHero>
 		<main>
 			<article>

@@ -5,16 +5,17 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import PageHero from '../components/PageHero.astro';
+import { SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'portfolio'>['data'];
 
-const { title, description, heroImage, technologies, liveUrl, repoUrl, role, date } = Astro.props;
+const { title, description, heroImage, technologies, liveUrl, repoUrl, role, completedDate } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={`${title} | ${SITE_TITLE}`} description={description} />
 	</head>
 
 	<body>
@@ -22,8 +23,8 @@ const { title, description, heroImage, technologies, liveUrl, repoUrl, role, dat
 		<PageHero title={title}>
 			<p slot="pre-title" class="text-sm text-text-muted mb-4">
 				{role && <span class="mr-2">{role}</span>}
-				{role && date && <span class="mr-2">·</span>}
-				{date && <span>{date.getFullYear()}</span>}
+				{role && completedDate && <span class="mr-2">·</span>}
+				{completedDate && <span>{completedDate.getFullYear()}</span>}
 			</p>
 
 			<p class="text-lg text-text-muted mb-6">{description}</p>
